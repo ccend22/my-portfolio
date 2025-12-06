@@ -3,561 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Endi Cikalleshi - Third-year Software Engineering Student Portfolio" />
+  <meta name="description" content="Endi Cikalleshi - Software Engineering Student Portfolio" />
   <title>Endi Cikalleshi - Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-dark: #0f172a;
-      --accent-cyan: #38bdf8;
-      --text-light: #f8fafc;
-      --text-gray: #cbd5e1;
-      --bg-card: #1e293b;
-      --bg-hover: #334155;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav .logo {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent-cyan);
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 400;
-      transition: color 0.3s ease;
-      position: relative;
-    }
-
-    nav a:hover {
-      color: var(--accent-cyan);
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--accent-cyan);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .mobile-menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .mobile-menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background-color: var(--text-light);
-      transition: all 0.3s ease;
-    }
-
-    /* Sections */
-    section {
-      padding: 5rem 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      width: 100%;
-    }
-
-    /* Hero Section */
-    #hero {
-      padding-top: 8rem;
-      text-align: center;
-    }
-
-    #hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease;
-    }
-
-    #hero .intro-text {
-      font-size: 1.5rem;
-      color: var(--text-gray);
-      margin-bottom: 2rem;
-      animation: fadeInUp 1s ease 0.2s both;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    #hero .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-      animation: fadeInUp 1s ease 0.4s both;
-    }
-
-    .btn {
-      padding: 0.875rem 2rem;
-      border: 2px solid var(--accent-cyan);
-      background-color: transparent;
-      color: var(--accent-cyan);
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: var(--accent-cyan);
-      color: var(--bg-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
-    }
-
-    .btn-primary {
-      background-color: var(--accent-cyan);
-      color: var(--bg-dark);
-    }
-
-    .btn-primary:hover {
-      background-color: #0ea5e9;
-      transform: translateY(-2px);
-    }
-
-    /* About Section */
-    #about {
-      background-color: rgba(30, 41, 59, 0.3);
-    }
-
-    #about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      color: var(--accent-cyan);
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text {
-      font-size: 1.1rem;
-      color: var(--text-gray);
-      line-height: 1.8;
-    }
-
-    .skills-interests {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .skills-section h3,
-    .interests-section h3 {
-      color: var(--accent-cyan);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .skill-tag {
-      background-color: var(--bg-card);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .skill-tag:hover {
-      border-color: var(--accent-cyan);
-      transform: translateY(-2px);
-    }
-
-    .interests-list {
-      list-style: none;
-      color: var(--text-gray);
-    }
-
-    .interests-list li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-
-    .interests-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent-cyan);
-    }
-
-    /* Projects Section */
-    #projects h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      color: var(--accent-cyan);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background-color: var(--bg-card);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(56, 189, 248, 0.1);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
-      border-color: var(--accent-cyan);
-    }
-
-    .project-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-cyan);
-      font-size: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-image::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .project-card:hover .project-image::before {
-      left: 100%;
-    }
-
-    .project-content {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-content h3 {
-      color: var(--accent-cyan);
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
-    }
-
-    .project-content p {
-      color: var(--text-gray);
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .tech-tag {
-      background-color: rgba(56, 189, 248, 0.1);
-      color: var(--accent-cyan);
-      padding: 0.25rem 0.75rem;
-      border-radius: 15px;
-      font-size: 0.8rem;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: auto;
-    }
-
-    .project-links a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .project-links a:hover {
-      color: #0ea5e9;
-    }
-
-    /* Contact Section */
-    #contact {
-      background-color: rgba(30, 41, 59, 0.3);
-    }
-
-    #contact h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      text-align: center;
-      color: var(--accent-cyan);
-    }
-
-    .contact-content {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .contact-item {
-      text-align: center;
-      padding: 1.5rem;
-      background-color: var(--bg-card);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(56, 189, 248, 0.1);
-    }
-
-    .contact-item:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent-cyan);
-    }
-
-    .contact-item a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .contact-item a:hover {
-      color: #0ea5e9;
-    }
-
-    .contact-form {
-      background-color: var(--bg-card);
-      padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid rgba(56, 189, 248, 0.1);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.875rem;
-      background-color: var(--bg-dark);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 5px;
-      color: var(--text-light);
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-cyan);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      color: var(--text-gray);
-      border-top: 1px solid rgba(56, 189, 248, 0.1);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      nav ul {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: rgba(15, 23, 42, 0.98);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1rem;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      nav ul.active {
-        transform: translateX(0);
-      }
-
-      .mobile-menu-toggle {
-        display: flex;
-      }
-
-      #hero h1 {
-        font-size: 2.5rem;
-      }
-
-      #hero .intro-text {
-        font-size: 1.2rem;
-      }
-
-      .about-content {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-info {
-        grid-template-columns: 1fr;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 300px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      section {
-        padding: 3rem 0;
-      }
-
-      #hero {
-        padding-top: 6rem;
-      }
-
-      #hero h1 {
-        font-size: 2rem;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Navigation -->
@@ -565,15 +16,18 @@
     <div class="container">
       <div class="logo">Endi Cikalleshi</div>
       <ul id="nav-menu">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#hero" data-translate="nav.home">Home</a></li>
+        <li><a href="#about" data-translate="nav.about">About Me</a></li>
+        <li><a href="#projects" data-translate="nav.projects">Projects</a></li>
+        <li><a href="#contact" data-translate="nav.contact">Contact Me</a></li>
       </ul>
-      <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="nav-right">
+        <button class="lang-switcher" id="lang-switcher">EN</button>
+        <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
   </nav>
@@ -581,14 +35,14 @@
   <!-- Hero Section -->
   <section id="hero">
     <div class="container">
-      <h1>Hi, I'm Endi 👋</h1>
-      <p class="intro-text">
-        I'm a third-year Software Engineering student passionate about building innovative web and mobile applications. 
-        I love creating user-friendly solutions that make a difference.
+      <h1 data-translate="hero.title">Hi, I'm Endi 👋</h1>
+      <p class="intro-text" data-translate="hero.intro">
+        Currently in my third year studying Software Engineering. I spend most of my time building web apps and iOS stuff, 
+        and honestly, I'm loving every bit of it. Always excited to work on something new and learn along the way.
       </p>
       <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn">Get In Touch</a>
+        <a href="#projects" class="btn btn-primary" data-translate="hero.workBtn">Check Out My Work</a>
+        <a href="#contact" class="btn" data-translate="hero.helloBtn">Say Hello</a>
       </div>
     </div>
   </section>
@@ -596,44 +50,46 @@
   <!-- About Section -->
   <section id="about">
     <div class="container">
-      <h2>About Me</h2>
+      <h2 data-translate="about.title">About Me</h2>
       <div class="about-content">
         <div class="about-text">
-          <p>
-            As a third-year Software Engineering student, I'm constantly learning and expanding my skills in software development. 
-            I enjoy working on projects that challenge me and allow me to grow as a developer.
+          <p data-translate="about.text1">
+            Hey! So I'm in my third year of Software Engineering, and it's been quite a journey. I started coding back 
+            in high school with some basic Python scripts, and now here I am building full-stack apps. The learning curve 
+            is steep but totally worth it.
           </p>
-          <p>
-            When I'm not coding, I like to stay updated with the latest technologies and contribute to open-source projects. 
-            I believe in writing clean, maintainable code and always strive for excellence in everything I build.
+          <p data-translate="about.text2">
+            Most of my free time goes into side projects (I know, typical developer). I'm really into clean code and 
+            good UX - nothing worse than using an app that feels clunky. When I'm not coding, you'll probably find me 
+            scrolling through Reddit for tech news or trying out new frameworks.
+          </p>
+          <p data-translate="about.text3">
+            I'm always open to collaborating on cool projects or just chatting about tech. Hit me up if you want to work 
+            on something together!
           </p>
         </div>
         <div class="skills-interests">
           <div class="skills-section">
-            <h3>Skills</h3>
+            <h3 data-translate="about.skills">Skills</h3>
             <div class="skills-grid">
               <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">TypeScript</span>
               <span class="skill-tag">React</span>
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">Swift</span>
-              <span class="skill-tag">iOS Development</span>
-              <span class="skill-tag">HTML/CSS</span>
-              <span class="skill-tag">Git</span>
               <span class="skill-tag">Python</span>
-              <span class="skill-tag">MongoDB</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">C#</span>
+              <span class="skill-tag">Swift</span>
             </div>
           </div>
           <div class="interests-section">
-            <h3>Interests</h3>
+            <h3 data-translate="about.interests">Interests</h3>
             <ul class="interests-list">
-              <li>Web Development</li>
-              <li>Mobile App Development</li>
-              <li>UI/UX Design</li>
-              <li>Machine Learning</li>
-              <li>Open Source</li>
+              <li data-translate="about.interest1">Full-stack web development</li>
+              <li data-translate="about.interest2">Building responsive websites</li>
+              <li data-translate="about.interest3">UI/UX design - love making things look good</li>
+              <li data-translate="about.interest4">Exploring new web technologies</li>
+              <li data-translate="about.interest5">Contributing to open source when I can</li>
             </ul>
           </div>
         </div>
@@ -644,130 +100,89 @@
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
-      <h2>My Projects</h2>
+      <h2 data-translate="projects.title">My Projects</h2>
       <div class="projects-grid">
-        <!-- Project 1 - Web App -->
+        <!-- Project 1 - Barbershop Website -->
         <div class="project-card">
-          <div class="project-image">🌐</div>
+          <div class="project-image">💇</div>
           <div class="project-content">
-            <h3>E-Commerce Platform</h3>
-            <p>A full-stack e-commerce application with user authentication, product management, shopping cart, and payment integration.</p>
+            <h3 data-translate="projects.project1.title">Barbershop Website</h3>
+            <p data-translate="projects.project1.desc">
+              A modern, responsive website for a local barbershop. Built with a clean design that showcases services, 
+              booking system, and gallery. The site includes an admin panel for managing appointments and services. 
+              Fully responsive and optimized for all devices.
+            </p>
             <div class="project-tech">
               <span class="tech-tag">React</span>
-              <span class="tech-tag">Node.js</span>
-              <span class="tech-tag">MongoDB</span>
-              <span class="tech-tag">Stripe API</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML/CSS</span>
+              <span class="tech-tag">Python</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
+              <!-- Replace with your actual GitHub repository URL -->
+              <a href="https://github.com/endicikalleshi/barbershop-website" target="_blank" rel="noopener noreferrer">
+                <span>🔗</span> <span data-translate="projects.github">GitHub</span>
               </a>
-              <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
-                <span>🌐</span> Live Demo
+              <!-- Replace with your actual live demo URL (e.g., Netlify, Vercel, GitHub Pages) -->
+              <a href="https://your-barbershop-demo.netlify.app" target="_blank" rel="noopener noreferrer">
+                <span>🌐</span> <span data-translate="projects.demo">Live Demo</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 2 - iOS App -->
+        <!-- Project 2 - Barcode Scanner App -->
         <div class="project-card">
           <div class="project-image">📱</div>
           <div class="project-content">
-            <h3>Task Management App</h3>
-            <p>An intuitive iOS task management application with cloud sync, reminders, and beautiful UI built with SwiftUI.</p>
+            <h3 data-translate="projects.project2.title">Barcode Scanner App</h3>
+            <p data-translate="projects.project2.desc">
+              A mobile application that scans barcodes and QR codes. Features include product lookup, history tracking, 
+              and sharing capabilities. Built with a focus on speed and accuracy. The app works offline for basic 
+              scanning and syncs data when connected.
+            </p>
             <div class="project-tech">
               <span class="tech-tag">Swift</span>
-              <span class="tech-tag">SwiftUI</span>
-              <span class="tech-tag">Core Data</span>
-              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Python</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
+              <!-- Replace with your actual GitHub repository URL -->
+              <a href="https://github.com/endicikalleshi/barcode-scanner" target="_blank" rel="noopener noreferrer">
+                <span>🔗</span> <span data-translate="projects.github">GitHub</span>
               </a>
+              <!-- For mobile apps, you can link to App Store, Play Store, or a demo video -->
+              <!-- <a href="https://apps.apple.com/your-app" target="_blank" rel="noopener noreferrer">
+                <span>📱</span> App Store
+              </a> -->
             </div>
           </div>
         </div>
 
-        <!-- Project 3 - Web App -->
+        <!-- Project 3 - Weather App -->
         <div class="project-card">
-          <div class="project-image">💼</div>
+          <div class="project-image">🌤️</div>
           <div class="project-content">
-            <h3>Portfolio Dashboard</h3>
-            <p>A responsive dashboard application for portfolio management with real-time data visualization and analytics.</p>
+            <h3 data-translate="projects.project3.title">Weather App</h3>
+            <p data-translate="projects.project3.desc">
+              A full-stack weather application that provides real-time weather data and forecasts. Features include 
+              location-based weather, 7-day forecasts, and weather alerts. Clean and intuitive interface with smooth 
+              animations. Uses weather APIs for accurate data.
+            </p>
             <div class="project-tech">
               <span class="tech-tag">React</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Chart.js</span>
-              <span class="tech-tag">Express</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
-              </a>
-              <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
-                <span>🌐</span> Live Demo
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4 - iOS App -->
-        <div class="project-card">
-          <div class="project-image">🎵</div>
-          <div class="project-content">
-            <h3>Music Player App</h3>
-            <p>A sleek iOS music player with offline support, playlists, and seamless audio playback experience.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Swift</span>
-              <span class="tech-tag">AVFoundation</span>
-              <span class="tech-tag">UIKit</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 5 - Web App -->
-        <div class="project-card">
-          <div class="project-image">📊</div>
-          <div class="project-content">
-            <h3>Data Analytics Platform</h3>
-            <p>A comprehensive data analytics platform with interactive charts, data export, and advanced filtering capabilities.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">JavaScript</span>
               <span class="tech-tag">Python</span>
-              <span class="tech-tag">PostgreSQL</span>
-              <span class="tech-tag">D3.js</span>
+              <span class="tech-tag">HTML/CSS</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
+              <!-- Replace with your actual GitHub repository URL -->
+              <a href="https://github.com/endicikalleshi/weather-app" target="_blank" rel="noopener noreferrer">
+                <span>🔗</span> <span data-translate="projects.github">GitHub</span>
               </a>
-              <a href="https://demo.example.com" target="_blank" rel="noopener noreferrer">
-                <span>🌐</span> Live Demo
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 6 - iOS App -->
-        <div class="project-card">
-          <div class="project-image">🏃</div>
-          <div class="project-content">
-            <h3>Fitness Tracker</h3>
-            <p>An iOS fitness tracking app with workout logging, progress tracking, and HealthKit integration.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Swift</span>
-              <span class="tech-tag">HealthKit</span>
-              <span class="tech-tag">SwiftUI</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <span>🔗</span> GitHub
+              <!-- Replace with your actual live demo URL -->
+              <a href="https://your-weather-app.netlify.app" target="_blank" rel="noopener noreferrer">
+                <span>🌐</span> <span data-translate="projects.demo">Live Demo</span>
               </a>
             </div>
           </div>
@@ -779,37 +194,37 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <h2>Get In Touch</h2>
+      <h2 data-translate="contact.title">Contact Me</h2>
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-item">
-            <h3>📧 Email</h3>
-            <p><a href="mailto:endi.cikalleshi@example.com">endi.cikalleshi@example.com</a></p>
+            <h3>📧 <span data-translate="contact.email">Email</span></h3>
+            <p><a href="mailto:endicikalleshi@gmail.com">endicikalleshi@gmail.com</a></p>
           </div>
           <div class="contact-item">
-            <h3>💼 GitHub</h3>
+            <h3>💼 <span data-translate="contact.github">GitHub</span></h3>
             <p><a href="https://github.com/endicikalleshi" target="_blank" rel="noopener noreferrer">github.com/endicikalleshi</a></p>
           </div>
           <div class="contact-item">
-            <h3>🔗 LinkedIn</h3>
+            <h3>🔗 <span data-translate="contact.linkedin">LinkedIn</span></h3>
             <p><a href="https://linkedin.com/in/endi-cikalleshi" target="_blank" rel="noopener noreferrer">linkedin.com/in/endi-cikalleshi</a></p>
           </div>
         </div>
 
         <form class="contact-form" id="contact-form">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name" data-translate="contact.formName">Name</label>
             <input type="text" id="name" name="name" required>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email" data-translate="contact.formEmail">Email</label>
             <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
+            <label for="message" data-translate="contact.formMessage">Message</label>
             <textarea id="message" name="message" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="contact.sendBtn">Send Message</button>
         </form>
       </div>
     </div>
@@ -818,11 +233,174 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2024 Endi Cikalleshi. All rights reserved.</p>
+      <p>&copy; 2024 Endi Cikalleshi. <span data-translate="footer.rights">All rights reserved.</span></p>
     </div>
   </footer>
 
   <script>
+    // Translation system
+    const translations = {
+      en: {
+        nav: {
+          home: 'Home',
+          about: 'About Me',
+          projects: 'Projects',
+          contact: 'Contact Me'
+        },
+        hero: {
+          title: "Hi, I'm Endi 👋",
+          intro: "Currently in my third year studying Software Engineering. I'm a full-stack web developer passionate about building modern, responsive websites and web applications. Always excited to work on something new and learn along the way.",
+          workBtn: 'Check Out My Work',
+          helloBtn: 'Say Hello'
+        },
+        about: {
+          title: 'About Me',
+          text1: "Hey! So I'm in my third year of Software Engineering, and it's been quite a journey. I started coding back in high school with some basic Python scripts, and now here I am building full-stack web applications. The learning curve is steep but totally worth it.",
+          text2: "Most of my free time goes into side projects (I know, typical developer). I'm really into clean code and good UX - nothing worse than using a website that feels clunky. When I'm not coding, you'll probably find me scrolling through Reddit for tech news or trying out new web frameworks.",
+          text3: "I'm always open to collaborating on cool web projects or just chatting about tech. Hit me up if you want to work on something together!",
+          skills: 'Skills',
+          interests: 'Interests',
+          interest1: 'Full-stack web development',
+          interest2: 'Building responsive websites',
+          interest3: 'UI/UX design - love making things look good',
+          interest4: 'Exploring new web technologies',
+          interest5: 'Contributing to open source when I can'
+        },
+        projects: {
+          title: 'My Projects',
+          github: 'GitHub',
+          demo: 'Live Demo',
+          project1: {
+            title: 'Barbershop Website',
+            desc: "A modern, responsive website for a local barbershop. Built with a clean design that showcases services, booking system, and gallery. The site includes an admin panel for managing appointments and services. Fully responsive and optimized for all devices."
+          },
+          project2: {
+            title: 'Barcode Scanner App',
+            desc: "A mobile application that scans barcodes and QR codes. Features include product lookup, history tracking, and sharing capabilities. Built with a focus on speed and accuracy. The app works offline for basic scanning and syncs data when connected."
+          },
+          project3: {
+            title: 'Weather App',
+            desc: "A full-stack weather application that provides real-time weather data and forecasts. Features include location-based weather, 7-day forecasts, and weather alerts. Clean and intuitive interface with smooth animations. Uses weather APIs for accurate data."
+          }
+        },
+        contact: {
+          title: 'Contact Me',
+          email: 'Email',
+          github: 'GitHub',
+          linkedin: 'LinkedIn',
+          formName: 'Name',
+          formEmail: 'Email',
+          formMessage: 'Message',
+          sendBtn: 'Send Message'
+        },
+        footer: {
+          rights: 'All rights reserved.'
+        }
+      },
+      sq: {
+        nav: {
+          home: 'Kryefaqja',
+          about: 'Rreth Meje',
+          projects: 'Projektet',
+          contact: 'Kontakto Mua'
+        },
+        hero: {
+          title: "Përshëndetje, Unë jam Endi 👋",
+          intro: "Aktualisht jam në vitin e tretë duke studiuar Inxhinieri Softuerike. Jam një zhvillues full-stack web i pasionuar për ndërtimin e faqeve moderne, responsive dhe aplikacioneve web. Gjithmonë i entuziazmuar për të punuar në diçka të re dhe për të mësuar gjatë rrugës.",
+          workBtn: 'Shiko Punën Time',
+          helloBtn: 'Thuaj Përshëndetje'
+        },
+        about: {
+          title: 'Rreth Meje',
+          text1: "Hej! Pra, jam në vitin e tretë të Inxhinierisë Softuerike, dhe ka qenë një udhëtim mjaft interesant. Fillova të programoj në shkollë të mesme me disa skripta bazë Python, dhe tani ja ku jam duke ndërtuar aplikacione web full-stack. Kurba e të mësuarit është e pjerrët por vlen plotësisht.",
+          text2: "Shumica e kohës sime të lirë shkon në projekte anësore (e di, zhvillues tipik). Jam vërtet i dhënë pas kodit të pastër dhe UX të mirë - nuk ka asgjë më keq se të përdorësh një faqe web që duket e vështirë. Kur nuk po programoj, me gjasë do të më gjeni duke shfletuar Reddit për lajme teknologjike ose duke provuar framework-e të reja web.",
+          text3: "Jam gjithmonë i hapur për bashkëpunim në projekte web të bukura ose thjesht për të biseduar për teknologji. Më kontaktoni nëse doni të punojmë së bashku në diçka!",
+          skills: 'Aftësitë',
+          interests: 'Interesat',
+          interest1: 'Zhvillim full-stack web',
+          interest2: 'Ndërtimi i faqeve web responsive',
+          interest3: 'Dizajn UI/UX - më pëlqen të bëj gjërat të duken mirë',
+          interest4: 'Eksplorimi i teknologjive të reja web',
+          interest5: 'Kontributimi në open source kur mundem'
+        },
+        projects: {
+          title: 'Projektet e Mia',
+          github: 'GitHub',
+          demo: 'Demo Live',
+          project1: {
+            title: 'Faqe Web për Berber',
+            desc: "Një faqe web moderne, responsive për një berber lokal. E ndërtuar me një dizajn të pastër që tregon shërbimet, sistemin e rezervimit dhe galerinë. Faqja përfshin një panel administratori për menaxhimin e takimeve dhe shërbimeve. Plotësisht responsive dhe e optimizuar për të gjitha pajisjet."
+          },
+          project2: {
+            title: 'Aplikacion Skaner Barcode',
+            desc: "Një aplikacion mobil që skanon barcode dhe QR code. Veçoritë përfshijnë kërkim produktesh, ndjekje historiku dhe aftësi shpërndarjeje. E ndërtuar me fokus në shpejtësi dhe saktësi. Aplikacioni funksionon offline për skanim bazë dhe sinkronizon të dhënat kur është i lidhur."
+          },
+          project3: {
+            title: 'Aplikacion Moti',
+            desc: "Një aplikacion moti full-stack që ofron të dhëna moti në kohë reale dhe parashikime. Veçoritë përfshijnë motin bazuar në lokacion, parashikime 7-ditore dhe alarme moti. Ndërfaqe e pastër dhe intuitive me animacione të qetë. Përdor API të motit për të dhëna të sakta."
+          }
+        },
+        contact: {
+          title: 'Kontakto Mua',
+          email: 'Email',
+          github: 'GitHub',
+          linkedin: 'LinkedIn',
+          formName: 'Emri',
+          formEmail: 'Email',
+          formMessage: 'Mesazhi',
+          sendBtn: 'Dërgo Mesazhin'
+        },
+        footer: {
+          rights: 'Të gjitha të drejtat e rezervuara.'
+        }
+      }
+    };
+
+    // Get current language from localStorage or default to 'en'
+    let currentLang = localStorage.getItem('language') || 'en';
+
+    // Function to translate text
+    function translate(key) {
+      const keys = key.split('.');
+      let value = translations[currentLang];
+      for (const k of keys) {
+        value = value[k];
+      }
+      return value || key;
+    }
+
+    // Function to update all translations
+    function updateTranslations() {
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = translate(key);
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+          element.placeholder = translation;
+        } else {
+          element.textContent = translation;
+        }
+      });
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = currentLang;
+      
+      // Update language switcher button
+      document.getElementById('lang-switcher').textContent = currentLang.toUpperCase();
+      
+      // Save to localStorage
+      localStorage.setItem('language', currentLang);
+    }
+
+    // Language switcher
+    const langSwitcher = document.getElementById('lang-switcher');
+    langSwitcher.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'sq' : 'en';
+      updateTranslations();
+    });
+
+    // Initialize translations on page load
+    updateTranslations();
+
     // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -866,11 +444,12 @@
       const message = formData.get('message');
       
       // Create mailto link (you can replace this with actual form submission logic)
-      const mailtoLink = `mailto:endi.cikalleshi@example.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
+      const mailtoLink = `mailto:endicikalleshi@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
       window.location.href = mailtoLink;
       
       // Optional: Show success message
-      alert('Thank you for your message! Opening your email client...');
+      const successMsg = currentLang === 'en' ? 'Thanks! Opening your email client...' : 'Faleminderit! Po hapet klienti juaj i email-it...';
+      alert(successMsg);
       contactForm.reset();
     });
 
