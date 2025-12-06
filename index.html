@@ -434,7 +434,7 @@
       });
     });
 
-    // Contact form handling with Netlify Forms
+    // Contact form handling - works both locally and on Netlify
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -446,32 +446,56 @@
       submitButton.disabled = true;
       submitButton.textContent = currentLang === 'en' ? 'Sending...' : 'Duke dërguar...';
       
-      try {
-        const formData = new FormData(contactForm);
-        const response = await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-        
-        if (response.ok) {
+      // Get form data
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      // Check if we're on Netlify (deployed) or local
+      const isNetlify = window.location.hostname.includes('netlify.app') || window.location.hostname.includes('netlify.com');
+      
+      if (isNetlify) {
+        // Use Netlify Forms when deployed
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+          
+          if (response.ok) {
+            const successMsg = currentLang === 'en' 
+              ? 'Thank you! Your message has been sent successfully. I\'ll get back to you soon!' 
+              : 'Faleminderit! Mesazhi juaj është dërguar me sukses. Do t\'ju përgjigjem së shpejti!';
+            alert(successMsg);
+            contactForm.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          // Fallback to mailto if Netlify fails
+          const mailtoLink = `mailto:endicikalleshi@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
+          window.location.href = mailtoLink;
           const successMsg = currentLang === 'en' 
-            ? 'Thank you! Your message has been sent successfully. I\'ll get back to you soon!' 
-            : 'Faleminderit! Mesazhi juaj është dërguar me sukses. Do t\'ju përgjigjem së shpejti!';
+            ? 'Opening your email client to send the message...' 
+            : 'Po hapet klienti juaj i email-it për të dërguar mesazhin...';
           alert(successMsg);
           contactForm.reset();
-        } else {
-          throw new Error('Form submission failed');
         }
-      } catch (error) {
-        const errorMsg = currentLang === 'en' 
-          ? 'Sorry, there was an error sending your message. Please try again or email me directly at endicikalleshi@gmail.com' 
-          : 'Na vjen keq, ka pasur një gabim gjatë dërgimit të mesazhit. Ju lutemi provoni përsëri ose më dërgoni email direkt në endicikalleshi@gmail.com';
-        alert(errorMsg);
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
+      } else {
+        // Use mailto for local testing
+        const mailtoLink = `mailto:endicikalleshi@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
+        window.location.href = mailtoLink;
+        const successMsg = currentLang === 'en' 
+          ? 'Opening your email client to send the message...' 
+          : 'Po hapet klienti juaj i email-it për të dërguar mesazhin...';
+        alert(successMsg);
+        contactForm.reset();
       }
+      
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
     });
 
     // Add scroll effect to navigation
