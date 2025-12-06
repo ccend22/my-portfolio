@@ -434,25 +434,44 @@
       });
     });
 
-    // Contact form handling
+    // Contact form handling with Netlify Forms
     const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Get form data
-      const formData = new FormData(contactForm);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const message = formData.get('message');
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
       
-      // Create mailto link (you can replace this with actual form submission logic)
-      const mailtoLink = `mailto:endicikalleshi@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
-      window.location.href = mailtoLink;
+      // Show loading state
+      submitButton.disabled = true;
+      submitButton.textContent = currentLang === 'en' ? 'Sending...' : 'Duke dërguar...';
       
-      // Optional: Show success message
-      const successMsg = currentLang === 'en' ? 'Thanks! Opening your email client...' : 'Faleminderit! Po hapet klienti juaj i email-it...';
-      alert(successMsg);
-      contactForm.reset();
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        
+        if (response.ok) {
+          const successMsg = currentLang === 'en' 
+            ? 'Thank you! Your message has been sent successfully. I\'ll get back to you soon!' 
+            : 'Faleminderit! Mesazhi juaj është dërguar me sukses. Do t\'ju përgjigjem së shpejti!';
+          alert(successMsg);
+          contactForm.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        const errorMsg = currentLang === 'en' 
+          ? 'Sorry, there was an error sending your message. Please try again or email me directly at endicikalleshi@gmail.com' 
+          : 'Na vjen keq, ka pasur një gabim gjatë dërgimit të mesazhit. Ju lutemi provoni përsëri ose më dërgoni email direkt në endicikalleshi@gmail.com';
+        alert(errorMsg);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
     });
 
     // Add scroll effect to navigation
